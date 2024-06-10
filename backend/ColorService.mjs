@@ -64,6 +64,38 @@ class ColorService extends Base {
     }
 
     /**
+     * @param {Object} data
+     * @returns {Object[]}
+     */
+    generateSummaryData(data) {
+        let startCharCode = 'A'.charCodeAt(0),
+            colorSummary  = {
+                colorA: 0,
+                colorB: 0,
+                colorC: 0,
+                colorD: 0,
+                colorE: 0
+            },
+            chartData;
+
+        data.forEach(item => {
+            Object.entries(item).forEach(([key, value]) => {
+                if (key !== 'id') {
+                    colorSummary['color' + String.fromCharCode(startCharCode + value - 1)]++
+                }
+            })
+        });
+
+        return [
+            {color: '#247acb', count: colorSummary['colorA']},
+            {color: '#4493de', count: colorSummary['colorB']},
+            {color: '#6face6', count: colorSummary['colorC']},
+            {color: '#9bc5ed', count: colorSummary['colorD']},
+            {color: '#c6def5', count: colorSummary['colorE']}
+        ]
+    }
+
+    /**
      * @returns {Number}
      */
     getRandomInteger() {
@@ -75,7 +107,15 @@ class ColorService extends Base {
      * @returns {Object}
      */
     read(opts) {
-        return {success: true, data: this.generateData()}
+        let data = this.generateData();
+
+        return {
+            success: true,
+            data: {
+                summaryData: this.generateSummaryData(data),
+                tableData  : data
+            }
+        }
     }
 
     /**

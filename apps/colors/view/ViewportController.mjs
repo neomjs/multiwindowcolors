@@ -128,8 +128,8 @@ class ViewportController extends Component {
         }).then(response => {
             let {data} = response;
 
-            me.getStore('colors').data = data;
-            me.updateCharts(data)
+            me.getStore('colors').data = data.tableData;
+            me.updateCharts(data.summaryData)
         })
     }
 
@@ -189,14 +189,14 @@ class ViewportController extends Component {
                     tableView.silentVdomUpdate = true;
 
                     store.items.forEach((record, index) => {
-                        record.set(data[index])
+                        record.set(data.tableData[index])
                     });
 
                     tableView.silentVdomUpdate = false;
 
                     tableView.update();
 
-                    me.updateCharts(data)
+                    me.updateCharts(data.summaryData)
                 })
             }, intervalTime)
         }
@@ -206,34 +206,8 @@ class ViewportController extends Component {
      * @param {Object} data
      */
     updateCharts(data) {
-        let startCharCode = 'A'.charCodeAt(0),
-            colorSummary  = {
-                colorA: 0,
-                colorB: 0,
-                colorC: 0,
-                colorD: 0,
-                colorE: 0
-            },
-            chartData;
-
-        data.forEach(item => {
-            Object.entries(item).forEach(([key, value]) => {
-                if (key !== 'id') {
-                    colorSummary['color' + String.fromCharCode(startCharCode + value - 1)]++
-                }
-            })
-        });
-
-        chartData = [
-            {color: '#247acb', count: colorSummary['colorA']},
-            {color: '#4493de', count: colorSummary['colorB']},
-            {color: '#6face6', count: colorSummary['colorC']},
-            {color: '#9bc5ed', count: colorSummary['colorD']},
-            {color: '#c6def5', count: colorSummary['colorE']}
-        ];
-
-        this.getReference('bar-chart').chartData = chartData;
-        this.getReference('pie-chart').chartData = chartData
+        this.getReference('bar-chart').chartData = data;
+        this.getReference('pie-chart').chartData = data
     }
 }
 
