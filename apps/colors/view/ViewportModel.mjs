@@ -30,6 +30,12 @@ class ViewportModel extends Component {
             }
         }
     }
+
+    onDataPropertyChange(key, value, oldValue) {
+        super.onDataPropertyChange(key, value, oldValue);
+
+        console.log(key, value);
+    }
 }
 
 Neo.setupClass(ViewportModel);

@@ -1,10 +1,11 @@
-import Base from '../../../node_modules/neo.mjs/src/container/Base.mjs';
+import NumberField from '../../../node_modules/neo.mjs/src/form/field/Number.mjs';
+import Toolbar     from '../../../node_modules/neo.mjs/src/toolbar/Base.mjs';
 
 /**
  * @class Colors.view.HeaderToolbar
- * @extends Neo.container.Base
+ * @extends Neo.toolbar.Base
  */
-class HeaderToolbar extends Base {
+class HeaderToolbar extends Toolbar {
     static config = {
         /**
          * @member {String} className='Colors.view.HeaderToolbar'
@@ -24,6 +25,16 @@ class HeaderToolbar extends Base {
         }, {
             handler: 'onStopButtonClick',
             text   : 'Stop'
+        }, {
+            module       : NumberField,
+            bind         : {value: data => data.amountColors},
+            clearable    : false,
+            labelPosition: 'inline',
+            labelText    : 'Amount Colors',
+            listeners    : {change(data) {data.component.getModel().setData('amountColors', data.value)}},
+            maxValue     : 10,
+            minValue     : 3,
+            width        : 150
         }, '->', {
             handler  : 'onDetachTableButtonClick',
             iconCls  : 'far fa-window-maximize',
