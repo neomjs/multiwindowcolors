@@ -203,7 +203,13 @@ class ViewportController extends Component {
      * @param {Object} data
      */
     onStartButtonClick(data) {
-        let me           = this,
+        Colors.backend.ColorService.read({
+            amountColors: 5
+        }).then(response => {
+            console.log(response.data);
+        })
+
+        /*let me           = this,
             intervalTime = 1000 / 60, // assuming 60 FPS
             store        = me.getStore('colors'),
             table        = me.getReference('table'),
@@ -225,7 +231,7 @@ class ViewportController extends Component {
 
                 me.updateCharts(data)
             }, intervalTime);
-        }
+        }*/
     }
 
     /**

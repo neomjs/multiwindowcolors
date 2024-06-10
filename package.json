@@ -17,11 +17,14 @@
         "generate-docs-json": "node ./node_modules/neo.mjs/buildScripts/docs/jsdocx.mjs",
         "inject-package-version": "node ./buildScripts/injectPackageVersion.mjs",
         "server-start": "webpack serve -c ./node_modules/neo.mjs/buildScripts/webpack/webpack.server.config.mjs --open",
+        "start-backend": "node ./backend/index.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "watch-themes": "node ./node_modules/neo.mjs/buildScripts/watchThemes.mjs"
     },
     "dependencies": {
-        "neo.mjs": "^6.16.0"
+        "express": "^4.19.2",
+        "neo.mjs": "^6.16.0",
+        "ws": "^8.17.0"
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^6.5.2",

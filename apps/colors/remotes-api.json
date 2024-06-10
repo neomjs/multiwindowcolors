@@ -1,0 +1,16 @@
+{
+    "namespace": "Colors.backend",
+    "type"     : "websocket",
+    "url"      : "ws://localhost:3001",
+
+    "services": {
+        "ColorService": {
+            "methods": {
+                "create" : {},
+                "destroy": {},
+                "read"   : {"params":  [{"type":  "Object"}]},
+                "update" : {}
+            }
+        }
+    }
+}
