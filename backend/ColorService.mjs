@@ -20,6 +20,22 @@ class ColorService extends Base {
     }
 
     /**
+     * @member {String[]} colorsMap
+     */
+    colorsMap = [
+        '#1c60a0',
+        '#206db6',
+        '#247acb',
+        '#2e87da',
+        '#4493de',
+        '#59a0e2',
+        '#6face6',
+        '#85b9ea',
+        '#9bc5ed',
+        '#b0d2f1'
+    ]
+
+    /**
      * todo
      * @returns {Object}
      */
@@ -36,27 +52,29 @@ class ColorService extends Base {
     }
 
     /**
+     * @param {Object} opts
      * @returns {Object[]}
      */
-    generateData() {
-        let me   = this,
-            data = [],
-            i    = 0,
-            len  = 20;
+    generateData(opts) {
+        let me             = this,
+            {amountColors} = opts,
+            data           = [],
+            i              = 0,
+            len            = 20;
 
         for (; i < len; i++) {
             data.push({
                 id     : `row${i + 1}`,
-                columnA: me.getRandomInteger(),
-                columnB: me.getRandomInteger(),
-                columnC: me.getRandomInteger(),
-                columnD: me.getRandomInteger(),
-                columnE: me.getRandomInteger(),
-                columnF: me.getRandomInteger(),
-                columnG: me.getRandomInteger(),
-                columnH: me.getRandomInteger(),
-                columnI: me.getRandomInteger(),
-                columnJ: me.getRandomInteger()
+                columnA: me.getRandomInteger(amountColors),
+                columnB: me.getRandomInteger(amountColors),
+                columnC: me.getRandomInteger(amountColors),
+                columnD: me.getRandomInteger(amountColors),
+                columnE: me.getRandomInteger(amountColors),
+                columnF: me.getRandomInteger(amountColors),
+                columnG: me.getRandomInteger(amountColors),
+                columnH: me.getRandomInteger(amountColors),
+                columnI: me.getRandomInteger(amountColors),
+                columnJ: me.getRandomInteger(amountColors)
             })
         }
 
@@ -65,41 +83,42 @@ class ColorService extends Base {
 
     /**
      * @param {Object} data
+     * @param {Object} opts
      * @returns {Object[]}
      */
-    generateSummaryData(data) {
-        let startCharCode = 'A'.charCodeAt(0),
-            colorSummary  = {
-                colorA: 0,
-                colorB: 0,
-                colorC: 0,
-                colorD: 0,
-                colorE: 0
-            },
-            chartData;
+    generateSummaryData(data, opts) {
+        let {amountColors} = opts,
+            colorSummary   = {},
+            returnData     = [],
+            i              = 0;
+
+        for (; i < amountColors; i++) {
+            colorSummary['color' + i] = 0
+        }
+
+        console.log(colorSummary);
 
         data.forEach(item => {
             Object.entries(item).forEach(([key, value]) => {
                 if (key !== 'id') {
-                    colorSummary['color' + String.fromCharCode(startCharCode + value - 1)]++
+                    colorSummary['color' + (value - 1)]++
                 }
             })
         });
 
-        return [
-            {color: '#247acb', count: colorSummary['colorA']},
-            {color: '#4493de', count: colorSummary['colorB']},
-            {color: '#6face6', count: colorSummary['colorC']},
-            {color: '#9bc5ed', count: colorSummary['colorD']},
-            {color: '#c6def5', count: colorSummary['colorE']}
-        ]
+        for (i=0; i < amountColors; i++) {
+            returnData.push({color: this.colorsMap[i], count: colorSummary['color' + i]})
+        }
+
+        return returnData
     }
 
     /**
+     * @param {Number} maxValue
      * @returns {Number}
      */
-    getRandomInteger() {
-        return Math.floor(Math.random() * 5) + 1
+    getRandomInteger(maxValue) {
+        return Math.floor(Math.random() * maxValue) + 1
     }
 
     /**
@@ -107,12 +126,13 @@ class ColorService extends Base {
      * @returns {Object}
      */
     read(opts) {
-        let data = this.generateData();
+        let data = this.generateData(opts);
 
         return {
             success: true,
+
             data: {
-                summaryData: this.generateSummaryData(data),
+                summaryData: this.generateSummaryData(data, opts),
                 tableData  : data
             }
         }
@@ -123,7 +143,7 @@ class ColorService extends Base {
      * @returns {Object}
      */
     update() {
-        return {success: false};
+        return {success: false}
     }
 }
 

@@ -124,7 +124,7 @@ class ViewportController extends Component {
         let me = this;
 
         Colors.backend.ColorService.read({
-            amountColors: 5
+            amountColors: me.getModel().getData('amountColors')
         }).then(response => {
             let {data} = response;
 
@@ -182,7 +182,7 @@ class ViewportController extends Component {
         if (!me.intervalId) {
             me.intervalId = setInterval(() => {
                 Colors.backend.ColorService.read({
-                    amountColors: 5
+                    amountColors: me.getModel().getData('amountColors')
                 }).then(response => {
                     let {data} = response;
 

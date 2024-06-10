@@ -31,11 +31,16 @@ class PieChartComponent extends AmChartComponent {
 
                 colors: {
                     list: [
+                        '#1c60a0',
+                        '#206db6',
                         '#247acb',
+                        '#2e87da',
                         '#4493de',
+                        '#59a0e2',
                         '#6face6',
+                        '#85b9ea',
                         '#9bc5ed',
-                        '#c6def5'
+                        '#b0d2f1'
                     ]
                 },
 
