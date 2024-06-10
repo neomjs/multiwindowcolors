@@ -36,11 +36,46 @@ class ColorService extends Base {
     }
 
     /**
+     * @returns {Object[]}
+     */
+    generateData() {
+        let me   = this,
+            data = [],
+            i    = 0,
+            len  = 20;
+
+        for (; i < len; i++) {
+            data.push({
+                id     : `row${i + 1}`,
+                columnA: me.getRandomInteger(),
+                columnB: me.getRandomInteger(),
+                columnC: me.getRandomInteger(),
+                columnD: me.getRandomInteger(),
+                columnE: me.getRandomInteger(),
+                columnF: me.getRandomInteger(),
+                columnG: me.getRandomInteger(),
+                columnH: me.getRandomInteger(),
+                columnI: me.getRandomInteger(),
+                columnJ: me.getRandomInteger()
+            })
+        }
+
+        return data
+    }
+
+    /**
+     * @returns {Number}
+     */
+    getRandomInteger() {
+        return Math.floor(Math.random() * 5) + 1
+    }
+
+    /**
      * @param {Object} opts
      * @returns {Object}
      */
     read(opts) {
-        return {success: true, data: [1, 2, 3]}
+        return {success: true, data: this.generateData()}
     }
 
     /**

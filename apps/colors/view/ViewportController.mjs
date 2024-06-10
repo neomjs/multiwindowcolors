@@ -52,41 +52,6 @@ class ViewportController extends Component {
     }
 
     /**
-     * @returns {Object[]}
-     */
-    generateData() {
-        let me   = this,
-            data = [],
-            i    = 0,
-            len  = 20;
-
-        for (; i < len; i++) {
-            data.push({
-                id     : `row${i + 1}`,
-                columnA: me.getRandomInteger(),
-                columnB: me.getRandomInteger(),
-                columnC: me.getRandomInteger(),
-                columnD: me.getRandomInteger(),
-                columnE: me.getRandomInteger(),
-                columnF: me.getRandomInteger(),
-                columnG: me.getRandomInteger(),
-                columnH: me.getRandomInteger(),
-                columnI: me.getRandomInteger(),
-                columnJ: me.getRandomInteger()
-            })
-        }
-
-        return data
-    }
-
-    /**
-     * @returns {Number}
-     */
-    getRandomInteger() {
-        return Math.floor(Math.random() * 5) + 1
-    }
-
-    /**
      * @param {Object} data
      * @param {String} data.appName
      * @param {Number} data.windowId
@@ -156,11 +121,16 @@ class ViewportController extends Component {
     onComponentConstructed() {
         super.onComponentConstructed();
 
-        let me   = this,
-            data = me.generateData();
+        let me = this;
 
-        me.getStore('colors').data = data;
-        me.updateCharts(data)
+        Colors.backend.ColorService.read({
+            amountColors: 5
+        }).then(response => {
+            let {data} = response;
+
+            me.getStore('colors').data = data;
+            me.updateCharts(data)
+        })
     }
 
     /**
@@ -203,13 +173,7 @@ class ViewportController extends Component {
      * @param {Object} data
      */
     onStartButtonClick(data) {
-        Colors.backend.ColorService.read({
-            amountColors: 5
-        }).then(response => {
-            console.log(response.data);
-        })
-
-        /*let me           = this,
+        let me           = this,
             intervalTime = 1000 / 60, // assuming 60 FPS
             store        = me.getStore('colors'),
             table        = me.getReference('table'),
@@ -217,21 +181,25 @@ class ViewportController extends Component {
 
         if (!me.intervalId) {
             me.intervalId = setInterval(() => {
-                let data = me.generateData();
+                Colors.backend.ColorService.read({
+                    amountColors: 5
+                }).then(response => {
+                    let {data} = response;
 
-                tableView.silentVdomUpdate = true;
+                    tableView.silentVdomUpdate = true;
 
-                store.items.forEach((record, index) => {
-                    record.set(data[index])
-                });
+                    store.items.forEach((record, index) => {
+                        record.set(data[index])
+                    });
 
-                tableView.silentVdomUpdate = false;
+                    tableView.silentVdomUpdate = false;
 
-                tableView.update();
+                    tableView.update();
 
-                me.updateCharts(data)
-            }, intervalTime);
-        }*/
+                    me.updateCharts(data)
+                })
+            }, intervalTime)
+        }
     }
 
     /**
