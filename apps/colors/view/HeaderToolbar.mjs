@@ -29,12 +29,13 @@ class HeaderToolbar extends Toolbar {
             module       : NumberField,
             bind         : {value: data => data.amountColors},
             clearable    : false,
+            editable     : false,
             labelPosition: 'inline',
             labelText    : 'Amount Colors',
             listeners    : {change(data) {data.component.getModel().setData('amountColors', data.value)}},
             maxValue     : 10,
             minValue     : 3,
-            width        : 150
+            width        : 120
         }, '->', {
             handler  : 'onDetachTableButtonClick',
             iconCls  : 'far fa-window-maximize',
