@@ -1,8 +1,8 @@
 import BaseViewport       from '../../../node_modules/neo.mjs/src/container/Viewport.mjs';
 import BarChartComponent  from './BarChartComponent.mjs';
+import HeaderToolbar      from './HeaderToolbar.mjs';
 import PieChartComponent  from './PieChartComponent.mjs';
 import TableContainer     from './TableContainer.mjs';
-import Toolbar            from '../../../node_modules/neo.mjs/src/toolbar/Base.mjs';
 import ViewportController from './ViewportController.mjs';
 import ViewportModel      from './ViewportModel.mjs';
 
@@ -33,36 +33,12 @@ class Viewport extends BaseViewport {
          * @member {Object[]} items
          */
         items: [{
-            module: Toolbar,
+            module: HeaderToolbar,
             cls   : ['portal-header-toolbar'],
-            flex  : 'none',
-
-            items: [{
-                handler: 'onStartButtonClick',
-                text   : 'Start'
-            }, {
-                handler: 'onStopButtonClick',
-                text   : 'Stop'
-            }, '->', {
-                handler  : 'onDetachTableButtonClick',
-                iconCls  : 'far fa-window-maximize',
-                reference: 'detach-table-button',
-                text     : 'Table'
-            }, {
-                handler  : 'onDetachPieChartButtonClick',
-                iconCls  : 'far fa-window-maximize',
-                reference: 'detach-pie-chart-button',
-                text     : 'Pie Chart'
-            }, {
-                handler  : 'onDetachBarChartButtonClick',
-                iconCls  : 'far fa-window-maximize',
-                reference: 'detach-bar-chart-button',
-                text     : 'Bar Chart'
-            }]
+            flex  : 'none'
         }, {
             module   : TableContainer,
             bind     : {store: 'stores.colors'},
-            height   : 300,
             reference: 'table'
         }, {
             module   : PieChartComponent,

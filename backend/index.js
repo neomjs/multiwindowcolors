@@ -26,7 +26,7 @@ wsServer.on('connection', socket => {
         }
 
         socket.send(JSON.stringify(reply))
-    });
+    })
 });
 
 const server = app.listen(3001);
