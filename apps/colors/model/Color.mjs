@@ -10,47 +10,31 @@ class Color extends Model {
          * @member {String} className='Colors.model.Color'
          * @protected
          */
-        className: 'Colors.model.Color',
-        /**
-         * @member {Object[]} fields
-         */
-        fields: [{
-            name: 'id',
-            type: 'String'
-        }, {
-            name: 'index',
-            type: 'Integer'
-        }, {
-            name: 'columnA',
-            type: 'String'
-        }, {
-            name: 'columnB',
-            type: 'String'
-        }, {
-            name: 'columnC',
-            type: 'String'
-        }, {
-            name: 'columnD',
-            type: 'String'
-        }, {
-            name: 'columnE',
-            type: 'String'
-        }, {
-            name: 'columnF',
-            type: 'String'
-        }, {
-            name: 'columnG',
-            type: 'String'
-        }, {
-            name: 'columnH',
-            type: 'String'
-        }, {
-            name: 'columnI',
-            type: 'String'
-        }, {
-            name: 'columnJ',
-            type: 'String'
-        }]
+        className: 'Colors.model.Color'
+    }
+
+    /**
+     * @param {Object} config
+     */
+    construct(config) {
+        super.construct(config);
+
+        let startCharCode = 'A'.charCodeAt(0),
+            i             = 0,
+            len           = 26, // amount of chars inside the ISO basic latin alphabet
+            fields        = [{
+                name: 'id',
+                type: 'String'
+            }];
+
+        for (; i < len; i++) {
+            fields.push({
+                name: 'column' + String.fromCharCode(startCharCode + i),
+                type: 'String'
+            })
+        }
+
+        this.fields = fields
     }
 }
 
