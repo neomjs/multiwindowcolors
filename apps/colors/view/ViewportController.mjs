@@ -178,9 +178,7 @@ class ViewportController extends Component {
         let me           = this,
             intervalTime = 1000 / 60, // assuming 60 FPS
             model        = me.getModel(),
-            store        = me.getStore('colors'),
-            table        = me.getReference('table'),
-            tableView    = table.view;
+            table        = me.getReference('table');
 
         if (!me.intervalId) {
             me.intervalId = setInterval(() => {
@@ -190,16 +188,7 @@ class ViewportController extends Component {
                 }).then(response => {
                     let {data} = response;
 
-                    tableView.silentVdomUpdate = true;
-
-                    store.items.forEach((record, index) => {
-                        record.set(data.tableData[index])
-                    });
-
-                    tableView.silentVdomUpdate = false;
-
-                    tableView.update();
-
+                    table.bulkUpdateRecords(data.tableData);
                     me.updateCharts(data.summaryData)
                 })
             }, intervalTime)
