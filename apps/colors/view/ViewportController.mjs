@@ -131,7 +131,7 @@ class ViewportController extends Component {
         }).then(response => {
             let {data} = response;
 
-            me.getStore('colors').data = data.tableData;
+            me.updateTable(data.tableData);
             me.updateCharts(data.summaryData)
         })
     }
@@ -178,8 +178,7 @@ class ViewportController extends Component {
     onStartButtonClick(data) {
         let me           = this,
             intervalTime = 1000 / 60, // assuming 60 FPS
-            model        = me.getModel(),
-            table        = me.getReference('table');
+            model        = me.getModel();
 
         if (!me.intervalId) {
             me.intervalId = setInterval(() => {
@@ -190,7 +189,7 @@ class ViewportController extends Component {
                 }).then(response => {
                     let {data} = response;
 
-                    table.bulkUpdateRecords(data.tableData);
+                    me.updateTable(data.tableData);
                     me.updateCharts(data.summaryData)
                 })
             }, intervalTime)
@@ -203,6 +202,20 @@ class ViewportController extends Component {
     updateCharts(data) {
         this.getReference('bar-chart').chartData = data;
         this.getReference('pie-chart').chartData = data
+    }
+
+    /**
+     * @param {Object[]} records
+     */
+    updateTable(records) {
+        let table   = this.getReference('table'),
+            {store} = table;
+
+        if (store.getCount()) {
+            table.bulkUpdateRecords(records)
+        } else {
+            store.data = records
+        }
     }
 }
 
