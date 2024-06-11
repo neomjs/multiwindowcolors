@@ -1,3 +1,4 @@
+import ComboBox    from '../../../node_modules/neo.mjs/src/form/field/ComboBox.mjs';
 import NumberField from '../../../node_modules/neo.mjs/src/form/field/Number.mjs';
 import Toolbar     from '../../../node_modules/neo.mjs/src/toolbar/Base.mjs';
 
@@ -35,6 +36,16 @@ class HeaderToolbar extends Toolbar {
             listeners    : {change(data) {data.component.getModel().setData('amountColors', data.value)}},
             maxValue     : 10,
             minValue     : 3,
+            width        : 120
+        }, {
+            module       : ComboBox,
+            bind         : {value: data => String(data.amountColumns)},
+            clearable    : false,
+            editable     : false,
+            labelPosition: 'inline',
+            labelText    : 'Amount Columns',
+            listeners    : {change(data) {data.component.getModel().setData('amountColumns', parseInt(data.value.name))}},
+            store        : ['5', '10', '15', '20', '26'],
             width        : 120
         }, '->', {
             handler  : 'onDetachTableButtonClick',
