@@ -153,6 +153,8 @@ class ViewportController extends Component {
     onStopButtonClick(data) {
         let me = this;
 
+        me.getModel().setData({isUpdating: false});
+
         if (me.intervalId) {
             clearInterval(me.intervalId);
             me.intervalId = null
@@ -165,6 +167,8 @@ class ViewportController extends Component {
     onStartButtonClick(data) {
         let me           = this,
             intervalTime = 1000 / 60; // assuming 60 FPS
+
+        me.getModel().setData({isUpdating: true});
 
         if (!me.intervalId) {
             me.intervalId = setInterval(() => {

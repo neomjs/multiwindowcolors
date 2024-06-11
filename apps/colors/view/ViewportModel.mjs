@@ -27,7 +27,11 @@ class ViewportModel extends Component {
             /**
              * @member {Number} data.amountRows=10
              */
-            amountRows: 10
+            amountRows: 10,
+            /**
+             * @member {Boolean} data.isUpdating=false
+             */
+            isUpdating: false
         },
         /**
          * @member {Object} stores

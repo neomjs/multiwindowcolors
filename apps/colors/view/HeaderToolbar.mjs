@@ -21,9 +21,11 @@ class HeaderToolbar extends Toolbar {
          * @member {Object[]} items
          */
         items: [{
+            bind   : {disabled: data => data.isUpdating},
             handler: 'onStartButtonClick',
             text   : 'Start'
         }, {
+            bind   : {disabled: data => !data.isUpdating},
             handler: 'onStopButtonClick',
             text   : 'Stop'
         }, {
