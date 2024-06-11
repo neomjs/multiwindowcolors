@@ -120,20 +120,7 @@ class ViewportController extends Component {
      */
     onComponentConstructed() {
         super.onComponentConstructed();
-
-        let me    = this,
-            model = me.getModel();
-
-        Colors.backend.ColorService.read({
-            amountColors : model.getData('amountColors'),
-            amountColumns: model.getData('amountColumns'),
-            amountRows   : model.getData('amountRows')
-        }).then(response => {
-            let {data} = response;
-
-            me.updateTable(data.tableData);
-            me.updateCharts(data.summaryData)
-        })
+        this.updateWidgets()
     }
 
     /**
@@ -177,21 +164,11 @@ class ViewportController extends Component {
      */
     onStartButtonClick(data) {
         let me           = this,
-            intervalTime = 1000 / 60, // assuming 60 FPS
-            model        = me.getModel();
+            intervalTime = 1000 / 60; // assuming 60 FPS
 
         if (!me.intervalId) {
             me.intervalId = setInterval(() => {
-                Colors.backend.ColorService.read({
-                    amountColors : model.getData('amountColors'),
-                    amountColumns: model.getData('amountColumns'),
-                    amountRows   : model.getData('amountRows')
-                }).then(response => {
-                    let {data} = response;
-
-                    me.updateTable(data.tableData);
-                    me.updateCharts(data.summaryData)
-                })
+                me.updateWidgets()
             }, intervalTime)
         }
     }
@@ -216,6 +193,25 @@ class ViewportController extends Component {
         } else {
             store.data = records
         }
+    }
+
+    /**
+     *
+     */
+    updateWidgets() {
+        let me    = this,
+            model = me.getModel();
+
+        Colors.backend.ColorService.read({
+            amountColors : model.getData('amountColors'),
+            amountColumns: model.getData('amountColumns'),
+            amountRows   : model.getData('amountRows')
+        }).then(response => {
+            let {data} = response;
+
+            me.updateTable(data.tableData);
+            me.updateCharts(data.summaryData)
+        })
     }
 }
 
