@@ -12,6 +12,17 @@ class TableContainer extends Container {
          */
         className: 'Colors.view.TableContainer',
         /**
+         * @member {Number|null} amountColumns_=null
+         */
+        amountColumns_: null,
+        /**
+         * @member {Object} bind
+         */
+        bind: {
+            amountColumns: data => data.amountColumns,
+            store        : 'stores.colors'
+        },
+        /**
          * @member {String[]} cls=['colors-table-container']
          */
         cls: ['colors-table-container'],
@@ -22,49 +33,41 @@ class TableContainer extends Container {
             renderer(data) {
                 return {cls: ['color-' + data.value], html: ' '}
             }
-        },
-        /**
-         * @member {Object[]} columns
-         */
-        columns: [{
-            cls      : ['neo-index-column', 'neo-table-header-button'],
-            dataField: 'index',
-            dock     : 'left',
-            minWidth : 40,
-            text     : '#',
-            renderer : data => ({cls : ['neo-index-column', 'neo-table-cell'], html: data.index + 1}),
-            width    : 40
-        }, {
-            dataField: 'columnA',
-            text     : 'A'
-        }, {
-            dataField: 'columnB',
-            text     : 'B'
-        }, {
-            dataField: 'columnC',
-            text     : 'C'
-        }, {
-            dataField: 'columnD',
-            text     : 'D'
-        }, {
-            dataField: 'columnE',
-            text     : 'E'
-        }, {
-            dataField: 'columnF',
-            text     : 'F'
-        }, {
-            dataField: 'columnG',
-            text     : 'G'
-        }, {
-            dataField: 'columnH',
-            text     : 'H'
-        }, {
-            dataField: 'columnI',
-            text     : 'I'
-        }, {
-            dataField: 'columnJ',
-            text     : 'J'
-        }]
+        }
+    }
+
+    /**
+     * Triggered after the amountColumns config got changed
+     * @param {Number|null} value
+     * @param {Number|null} oldValue
+     * @protected
+     */
+    afterSetAmountColumns(value, oldValue) {
+        if (Neo.isNumber(value)) {
+            let startCharCode = 'A'.charCodeAt(0),
+                i             = 0,
+                columns       = [{
+                    cls      : ['neo-index-column', 'neo-table-header-button'],
+                    dataField: 'index',
+                    dock     : 'left',
+                    minWidth : 40,
+                    text     : '#',
+                    renderer : data => ({cls: ['neo-index-column', 'neo-table-cell'], html: data.index + 1}),
+                    width    : 40
+                }],
+                currentChar;
+
+            for (; i < value; i++) {
+                currentChar = String.fromCharCode(startCharCode + i);
+
+                columns.push({
+                    dataField: 'column' + currentChar,
+                    text     : currentChar
+                })
+            }
+
+            this.columns = columns
+        }
     }
 }
 

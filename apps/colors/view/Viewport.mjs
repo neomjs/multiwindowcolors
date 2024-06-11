@@ -34,11 +34,9 @@ class Viewport extends BaseViewport {
          */
         items: [{
             module: HeaderToolbar,
-            cls   : ['portal-header-toolbar'],
             flex  : 'none'
         }, {
             module   : TableContainer,
-            bind     : {store: 'stores.colors'},
             reference: 'table'
         }, {
             module   : PieChartComponent,

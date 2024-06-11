@@ -19,7 +19,11 @@ class ViewportModel extends Component {
             /**
              * @member {Number} data.amountColors=7
              */
-            amountColors: 7
+            amountColors: 7,
+            /**
+             * @member {Number} data.amountColumns=5
+             */
+            amountColumns: 5
         },
         /**
          * @member {Object} stores
