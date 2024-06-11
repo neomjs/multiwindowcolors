@@ -16,10 +16,15 @@ class TableContainer extends Container {
          */
         amountColumns_: null,
         /**
+         * @member {Number|null} amountRows_=null
+         */
+        amountRows_: null,
+        /**
          * @member {Object} bind
          */
         bind: {
             amountColumns: data => data.amountColumns,
+            amountRows   : data => data.amountRows,
             store        : 'stores.colors'
         },
         /**
@@ -68,6 +73,16 @@ class TableContainer extends Container {
 
             this.columns = columns
         }
+    }
+
+    /**
+     * Triggered after the amountRows config got changed
+     * @param {Number|null} value
+     * @param {Number|null} oldValue
+     * @protected
+     */
+    afterSetAmountRows(value, oldValue) {
+        this.store?.clear()
     }
 }
 
