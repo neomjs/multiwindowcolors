@@ -1,7 +1,7 @@
 import BaseViewport from '../../../../../node_modules/neo.mjs/src/container/Viewport.mjs';
 
 /**
- * @class Colors.view.Viewport
+ * @class Widget.view.Viewport
  * @extends Neo.container.Viewport
  */
 class Viewport extends BaseViewport {
@@ -10,7 +10,7 @@ class Viewport extends BaseViewport {
          * @member {String} className='Widget.view.Viewport'
          * @protected
          */
-        className: 'SharedDialog2.view.Viewport'
+        className: 'Widget.view.Viewport'
     }
 }
 
