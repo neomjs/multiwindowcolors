@@ -23,7 +23,7 @@
     },
     "dependencies": {
         "express": "^4.19.2",
-        "neo.mjs": "^6.16.2",
+        "neo.mjs": "^6.16.3",
         "ws": "^8.17.0"
     },
     "devDependencies": {
