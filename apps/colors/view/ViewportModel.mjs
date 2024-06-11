@@ -21,9 +21,9 @@ class ViewportModel extends Component {
              */
             amountColors: 7,
             /**
-             * @member {Number} data.amountColumns=5
+             * @member {Number} data.amountColumns=10
              */
-            amountColumns: 5
+            amountColumns: 10
         },
         /**
          * @member {Object} stores
@@ -33,12 +33,6 @@ class ViewportModel extends Component {
                 module: ColorsStore
             }
         }
-    }
-
-    onDataPropertyChange(key, value, oldValue) {
-        super.onDataPropertyChange(key, value, oldValue);
-
-        console.log(key, value);
     }
 }
 

@@ -121,10 +121,12 @@ class ViewportController extends Component {
     onComponentConstructed() {
         super.onComponentConstructed();
 
-        let me = this;
+        let me    = this,
+            model = me.getModel();
 
         Colors.backend.ColorService.read({
-            amountColors: me.getModel().getData('amountColors')
+            amountColors : model.getData('amountColors'),
+            amountColumns: model.getData('amountColumns')
         }).then(response => {
             let {data} = response;
 
@@ -175,6 +177,7 @@ class ViewportController extends Component {
     onStartButtonClick(data) {
         let me           = this,
             intervalTime = 1000 / 60, // assuming 60 FPS
+            model        = me.getModel(),
             store        = me.getStore('colors'),
             table        = me.getReference('table'),
             tableView    = table.view;
@@ -182,7 +185,8 @@ class ViewportController extends Component {
         if (!me.intervalId) {
             me.intervalId = setInterval(() => {
                 Colors.backend.ColorService.read({
-                    amountColors: me.getModel().getData('amountColors')
+                    amountColors : model.getData('amountColors'),
+                    amountColumns: model.getData('amountColumns')
                 }).then(response => {
                     let {data} = response;
 

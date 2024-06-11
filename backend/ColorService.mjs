@@ -53,6 +53,8 @@ class ColorService extends Base {
 
     /**
      * @param {Object} opts
+     * @param {Number} opts.amountColors
+     * @param {Number} opts.amountColumns
      * @returns {Object[]}
      */
     generateData(opts) {
@@ -60,22 +62,18 @@ class ColorService extends Base {
             {amountColors} = opts,
             data           = [],
             i              = 0,
-            len            = 20;
+            countRecords   = 20,
+            startCharCode  = 'A'.charCodeAt(0),
+            j, record;
 
-        for (; i < len; i++) {
-            data.push({
-                id     : `row${i + 1}`,
-                columnA: me.getRandomInteger(amountColors),
-                columnB: me.getRandomInteger(amountColors),
-                columnC: me.getRandomInteger(amountColors),
-                columnD: me.getRandomInteger(amountColors),
-                columnE: me.getRandomInteger(amountColors),
-                columnF: me.getRandomInteger(amountColors),
-                columnG: me.getRandomInteger(amountColors),
-                columnH: me.getRandomInteger(amountColors),
-                columnI: me.getRandomInteger(amountColors),
-                columnJ: me.getRandomInteger(amountColors)
-            })
+        for (; i < countRecords; i++) {
+            record = {id: `row${i + 1}`};
+
+            for (j=0; j < opts.amountColumns; j++) {
+                record['column' + String.fromCharCode(startCharCode + j)] = me.getRandomInteger(amountColors)
+            }
+
+            data.push(record)
         }
 
         return data
@@ -95,8 +93,6 @@ class ColorService extends Base {
         for (; i < amountColors; i++) {
             colorSummary['color' + i] = 0
         }
-
-        console.log(colorSummary);
 
         data.forEach(item => {
             Object.entries(item).forEach(([key, value]) => {
