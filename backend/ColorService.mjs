@@ -55,6 +55,7 @@ class ColorService extends Base {
      * @param {Object} opts
      * @param {Number} opts.amountColors
      * @param {Number} opts.amountColumns
+     * @param {Number} opts.amountRows
      * @returns {Object[]}
      */
     generateData(opts) {
@@ -62,11 +63,10 @@ class ColorService extends Base {
             {amountColors} = opts,
             data           = [],
             i              = 0,
-            countRecords   = 20,
             startCharCode  = 'A'.charCodeAt(0),
             j, record;
 
-        for (; i < countRecords; i++) {
+        for (; i < opts.amountRows; i++) {
             record = {id: `row${i + 1}`};
 
             for (j=0; j < opts.amountColumns; j++) {

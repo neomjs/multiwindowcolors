@@ -47,6 +47,16 @@ class HeaderToolbar extends Toolbar {
             listeners    : {change(data) {data.component.getModel().setData('amountColumns', parseInt(data.value.name))}},
             store        : ['5', '10', '15', '20', '26'],
             width        : 120
+        }, {
+            module       : ComboBox,
+            bind         : {value: data => String(data.amountRows)},
+            clearable    : false,
+            editable     : false,
+            labelPosition: 'inline',
+            labelText    : 'Amount Rows',
+            listeners    : {change(data) {data.component.getModel().setData('amountRows', parseInt(data.value.name))}},
+            store        : ['5', '10', '15', '20'],
+            width        : 120
         }, '->', {
             handler  : 'onDetachTableButtonClick',
             iconCls  : 'far fa-window-maximize',

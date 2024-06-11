@@ -23,7 +23,11 @@ class ViewportModel extends Component {
             /**
              * @member {Number} data.amountColumns=10
              */
-            amountColumns: 10
+            amountColumns: 10,
+            /**
+             * @member {Number} data.amountRows=10
+             */
+            amountRows: 10
         },
         /**
          * @member {Object} stores
