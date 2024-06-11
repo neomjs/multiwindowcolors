@@ -6,10 +6,7 @@
     "services": {
         "ColorService": {
             "methods": {
-                "create" : {},
-                "destroy": {},
-                "read"   : {"params":  [{"type":  "Object"}]},
-                "update" : {}
+                "read": {"params":  [{"type":  "Object"}]}
             }
         }
     }

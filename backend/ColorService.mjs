@@ -36,22 +36,6 @@ class ColorService extends Base {
     ]
 
     /**
-     * todo
-     * @returns {Object}
-     */
-    create() {
-        return {success: false}
-    }
-
-    /**
-     * todo
-     * @returns {Object}
-     */
-    destroy() {
-        return {success: false}
-    }
-
-    /**
      * @param {Object} opts
      * @param {Number} opts.amountColors
      * @param {Number} opts.amountColumns
@@ -132,14 +116,6 @@ class ColorService extends Base {
                 tableData  : data
             }
         }
-    }
-
-    /**
-     * todo
-     * @returns {Object}
-     */
-    update() {
-        return {success: false}
     }
 }
 
