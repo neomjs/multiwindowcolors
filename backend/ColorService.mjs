@@ -106,7 +106,6 @@ class ColorService extends Base {
      * @param {Number} opts.amountColors
      * @param {Number} opts.amountColumns
      * @param {Number} opts.amountRows
-     * @param {Object} opts
      * @returns {Object}
      */
     read(opts) {
