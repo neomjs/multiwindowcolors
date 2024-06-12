@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="300"src="https://raw.githubusercontent.com/neomjs/pages/main/resources/images/logos/Neo_Logo_Text.svg">
+  <img height="200"src="https://raw.githubusercontent.com/neomjs/pages/main/resources/images/logos/Neo_Logo_Text.svg">
 </p>
 
 # High performance demo for sharing real-time data across multiple browser windows
