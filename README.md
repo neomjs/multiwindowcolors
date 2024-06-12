@@ -2,7 +2,7 @@
   <img height="100"src="https://raw.githubusercontent.com/neomjs/pages/main/resources/images/logos/Neo_Logo_Text.svg">
 </p>
 
-# High performance demo for sharing real-time data across multiple browser windows
+# Sharing real-time data across multiple browser windows
 
 ## Follow these steps to get the app running locally:
 1. Clone the repository
