@@ -20,9 +20,6 @@ class BarChartComponent extends AmChartComponent {
          */
         chartType: 'XYChart',
         /**
-         * @member {Object} _vdom
-         */
-        /**
          * @member {Object} chartConfig
          */
         chartConfig: {
