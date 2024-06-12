@@ -101,6 +101,27 @@ class ViewportController extends Component {
     }
 
     /**
+     * @param {Object} data
+     */
+    onChangeAmountColors(data) {
+        this.updateDataProperty(data, 'amountColors',  data.value)
+    }
+
+    /**
+     * @param {Object} data
+     */
+    onChangeAmountColumns(data) {
+        this.updateDataProperty(data, 'amountColumns',  parseInt(data.value.name))
+    }
+
+    /**
+     * @param {Object} data
+     */
+    onChangeAmountRows(data) {
+        this.updateDataProperty(data, 'amountRows',  parseInt(data.value.name))
+    }
+
+    /**
      *
      */
     onConstructed() {
@@ -183,6 +204,22 @@ class ViewportController extends Component {
     updateCharts(data) {
         this.getReference('bar-chart').chartData = data;
         this.getReference('pie-chart').chartData = data
+    }
+
+    /**
+     * If the WebSocket stream is not running, we need to pull new data once to see the new setting visually
+     * @param {Object} data The change event data
+     * @param {String} name The VM data property name
+     * @param {Number|Object|null} value The new VM data property value
+     */
+    updateDataProperty(data, name, value) {
+        let model = this.getModel();
+
+        model.setData(name, value);
+
+        if (data.oldValue !== null && !model.getData('isUpdating')) {
+            this.updateWidgets()
+        }
     }
 
     /**

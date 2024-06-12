@@ -35,7 +35,7 @@ class HeaderToolbar extends Toolbar {
             editable     : false,
             labelPosition: 'inline',
             labelText    : 'Amount Colors',
-            listeners    : {change(data) {data.component.getModel().setData('amountColors', data.value)}},
+            listeners    : {change: 'onChangeAmountColors'},
             maxValue     : 10,
             minValue     : 3,
             width        : 120
@@ -46,7 +46,7 @@ class HeaderToolbar extends Toolbar {
             editable     : false,
             labelPosition: 'inline',
             labelText    : 'Amount Columns',
-            listeners    : {change(data) {data.component.getModel().setData('amountColumns', parseInt(data.value.name))}},
+            listeners    : {change: 'onChangeAmountColumns'},
             store        : ['5', '10', '15', '20', '26'],
             width        : 120
         }, {
@@ -56,7 +56,7 @@ class HeaderToolbar extends Toolbar {
             editable     : false,
             labelPosition: 'inline',
             labelText    : 'Amount Rows',
-            listeners    : {change(data) {data.component.getModel().setData('amountRows', parseInt(data.value.name))}},
+            listeners    : {change: 'onChangeAmountRows'},
             store        : ['5', '10', '15', '20'],
             width        : 120
         }, '->', {
