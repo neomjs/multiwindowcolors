@@ -83,7 +83,7 @@ class HeaderToolbar extends Toolbar {
             module        : CheckBox,
             bind          : {checked: data => data.openWidgetsAsPopups},
             hideLabel     : true,
-            listeners    : {change: 'onChangeOpenWidgetsAsPopups'},
+            listeners     : {change: 'onChangeOpenWidgetsAsPopups'},
             showValueLabel: true,
             valueLabelText: 'Popups'
         }]

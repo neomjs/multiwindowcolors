@@ -33,22 +33,28 @@ class ViewportController extends Component {
     /**
      * @param {String} name The name of the reference
      */
-    async createPopupWindow(name) {
-        let me                         = this,
-            widget                     = me.getReference(name),
-            winData                    = await Neo.Main.getWindowData(),
-            rect                       = await me.component.getDomRect(widget.vdom.id), // using the vdom id to always get the top-level node
-            {height, left, top, width} = rect;
+    async createBrowserWindow(name) {
+        let me  = this,
+            url = `./childapps/widget/index.html?name=${name}`;
 
-        height -= 50; // popup header in Chrome
-        left   += winData.screenLeft;
-        top    += (winData.outerHeight - winData.innerHeight + winData.screenTop);
+        if (me.getModel().getData('openWidgetsAsPopups')) {
+            let widget                     = me.getReference(name),
+                winData                    = await Neo.Main.getWindowData(),
+                rect                       = await me.component.getDomRect(widget.vdom.id), // using the vdom id to always get the top-level node
+                {height, left, top, width} = rect;
 
-        Neo.Main.windowOpen({
-            url           : `./childapps/widget/index.html?name=${name}`,
-            windowFeatures: `height=${height},left=${left},top=${top},width=${width}`,
-            windowName    : name
-        })
+            height -= 50; // popup header in Chrome
+            left   += winData.screenLeft;
+            top    += (winData.outerHeight - winData.innerHeight + winData.screenTop);
+
+            await Neo.Main.windowOpen({
+                url,
+                windowFeatures: `height=${height},left=${left},top=${top},width=${width}`,
+                windowName    : name
+            })
+        } else {
+            await Neo.Main.windowOpen({url, windowName: '_blank'})
+        }
     }
 
     /**
@@ -157,21 +163,21 @@ class ViewportController extends Component {
      * @param {Object} data
      */
     async onDetachBarChartButtonClick(data) {
-        await this.createPopupWindow('bar-chart')
+        await this.createBrowserWindow('bar-chart')
     }
 
     /**
      * @param {Object} data
      */
     async onDetachPieChartButtonClick(data) {
-        await this.createPopupWindow('pie-chart')
+        await this.createBrowserWindow('pie-chart')
     }
 
     /**
      * @param {Object} data
      */
     async onDetachTableButtonClick(data) {
-        await this.createPopupWindow('table')
+        await this.createBrowserWindow('table')
     }
 
     /**
