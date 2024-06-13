@@ -69,6 +69,8 @@ class ViewportController extends Component {
 
             me.connectedApps.push(widgetName);
 
+            me.getReference(`detach-${widgetName}-button`).disabled = true;
+
             widgetParent.remove(widget, false);
             mainView.add(widget)
         }
@@ -148,7 +150,6 @@ class ViewportController extends Component {
      * @param {Object} data
      */
     async onDetachBarChartButtonClick(data) {
-        data.component.disabled = true;
         await this.createPopupWindow('bar-chart')
     }
 
@@ -156,7 +157,6 @@ class ViewportController extends Component {
      * @param {Object} data
      */
     async onDetachPieChartButtonClick(data) {
-        data.component.disabled = true;
         await this.createPopupWindow('pie-chart')
     }
 
@@ -164,7 +164,6 @@ class ViewportController extends Component {
      * @param {Object} data
      */
     async onDetachTableButtonClick(data) {
-        data.component.disabled = true;
         await this.createPopupWindow('table')
     }
 
