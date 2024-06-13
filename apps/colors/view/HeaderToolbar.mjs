@@ -61,17 +61,17 @@ class HeaderToolbar extends Toolbar {
             width        : 120
         }, '->', {
             handler  : 'onDetachTableButtonClick',
-            iconCls  : 'far fa-window-maximize',
+            iconCls  : 'fas fa-table',
             reference: 'detach-table-button',
             text     : 'Table'
         }, {
             handler  : 'onDetachPieChartButtonClick',
-            iconCls  : 'far fa-window-maximize',
+            iconCls  : 'fas fa-chart-pie',
             reference: 'detach-pie-chart-button',
             text     : 'Pie Chart'
         }, {
             handler  : 'onDetachBarChartButtonClick',
-            iconCls  : 'far fa-window-maximize',
+            iconCls  : 'fas fa-chart-column',
             reference: 'detach-bar-chart-button',
             text     : 'Bar Chart'
         }]
