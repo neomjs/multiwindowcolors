@@ -31,7 +31,11 @@ class ViewportModel extends Component {
             /**
              * @member {Boolean} data.isUpdating=false
              */
-            isUpdating: false
+            isUpdating: false,
+            /**
+             * @member {Boolean} data.openWidgetsAsPopups=true
+             */
+            openWidgetsAsPopups: true
         },
         /**
          * @member {Object} stores
