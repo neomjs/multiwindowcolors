@@ -124,6 +124,13 @@ class ViewportController extends Component {
     }
 
     /**
+     * @param {Object} data
+     */
+    onChangeOpenWidgetsAsPopups(data) {
+        this.getModel().setData('openWidgetsAsPopups', data.value)
+    }
+
+    /**
      *
      */
     onConstructed() {

@@ -1,7 +1,11 @@
 .portal-header-toolbar, .neo-toolbar {
     > * {
-        &:not(:first-child) {
-            margin-left: .5em;
+        &:not(:last-child) {
+            margin-right: .5em;
         }
+    }
+
+    .neo-checkboxfield {
+        margin-left: 1em;
     }
 }

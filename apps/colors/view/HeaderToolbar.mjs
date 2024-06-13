@@ -1,3 +1,4 @@
+import CheckBox    from '../../../node_modules/neo.mjs/src/form/field/CheckBox.mjs';
 import ComboBox    from '../../../node_modules/neo.mjs/src/form/field/ComboBox.mjs';
 import NumberField from '../../../node_modules/neo.mjs/src/form/field/Number.mjs';
 import Toolbar     from '../../../node_modules/neo.mjs/src/toolbar/Base.mjs';
@@ -17,6 +18,10 @@ class HeaderToolbar extends Toolbar {
          * @member {String[]} cls=['portal-header-toolbar']
          */
         cls: ['portal-header-toolbar'],
+        /**
+         * @member {Object} layout={ntype:'hbox',align:'stretch',wrap:'wrap'}
+         */
+        layout: {ntype: 'hbox', align: 'center', pack: 'start', wrap: 'wrap'},
         /**
          * @member {Object[]} items
          */
@@ -74,6 +79,13 @@ class HeaderToolbar extends Toolbar {
             iconCls  : 'fas fa-chart-column',
             reference: 'detach-bar-chart-button',
             text     : 'Bar Chart'
+        }, {
+            module        : CheckBox,
+            bind          : {checked: data => data.openWidgetsAsPopups},
+            hideLabel     : true,
+            listeners    : {change: 'onChangeOpenWidgetsAsPopups'},
+            showValueLabel: true,
+            valueLabelText: 'Popups'
         }]
     }
 }
