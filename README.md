@@ -8,5 +8,5 @@
 1. Clone the repository
 2. npm i
 3. npm run build-all
-4. npm run server-start
-5. npm run start-backend
+4. npm run start-backend
+5. npm run server-start
