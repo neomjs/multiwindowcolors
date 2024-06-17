@@ -95,7 +95,7 @@ class ViewportController extends Component {
             widget              = me.getReference(widgetName),
             widgetParent        = widget.up();
 
-        // Closing a code preview window needs to drop the preview back into the related main app
+        // Closing a non-main app needs to move the widget back into its original position & re-enable the show button
         if (appName !== 'Colors') {
             widgetParent.remove(widget, false);
             me.component.insert(me.widgetIndexMap[widgetName], widget);
